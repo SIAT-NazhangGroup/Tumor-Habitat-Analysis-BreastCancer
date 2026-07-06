@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import os
 import nibabel as nib
 import numpy as np
@@ -30,7 +36,7 @@ def analyze_spacing(data_dirs, center_names):
     return df
 
 # 示例用法
-data_dirs = [r'E:\liuzhou_breastcancer\figure-res-1\washIn', r'E:\breastcancer_new\figure-res-1\washIn']  # 替换成你的文件夹路径
+data_dirs = [r'<PROJECT_ROOT>\figure-res-1\washIn', r'<NEW_ROOT>\figure-res-1\washIn']  # 替换成你的文件夹路径
 center_names = ['Center_SZ', 'Center_GZ']
 
 spacing_df = analyze_spacing(data_dirs, center_names)

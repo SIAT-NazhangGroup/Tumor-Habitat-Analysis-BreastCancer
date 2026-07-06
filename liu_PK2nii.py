@@ -48,11 +48,11 @@ def process_session(session_dir, output_dir, patient, session):
     print(f"Saved NII file at {output_file}")
 
 # 指定Benign和Malignant文件夹的路径
-# benign_dir = "E:\\DCESummary_2019-202004\\benign-DCE-221subs\\part1-175subs+part2"
-# malignant_dir = "E:\\DCESummary_2019-202004\\malignant-DCE-451subs\\part1-288subs+part2"
-malignant_dir = r"E:\liuzhounew\P00019610\HGTFHIKV"
-# benign_nii_dir = "E:\\liuzhou_breastcancer\\Benign_nii"
-malignant_nii_dir = "E:\\breastcancer_new"
+# benign_dir = '<REDACTED_PATH>'"
+# malignant_dir = '<REDACTED_PATH>'"
+malignant_dir = r"<NEW_ROOT>\P00019610\HGTFHIKV"
+# benign_nii_dir = '<REDACTED_PATH>'"
+malignant_nii_dir = '<REDACTED_PATH>'"
 
 # 处理Benign和Malignant目录
 # process_directory(benign_dir, benign_nii_dir)

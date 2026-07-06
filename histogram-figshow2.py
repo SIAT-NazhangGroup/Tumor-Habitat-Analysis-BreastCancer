@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -19,8 +25,8 @@ def plot_kde_counts(data, color, label, bw=1.0):
     plt.plot(x_grid, y, label=label, color=color, alpha=0.7)
 
 # 读取两个 CSV 文件
-df1 = pd.read_csv(r"E:\breastcancer_new\wash-out-mean.csv")  # 替换为实际路径
-df2 = pd.read_csv(r"E:\liuzhou_breastcancer\wash-out-mean-1.csv")
+df1 = pd.read_csv(r"<NEW_ROOT>\wash-out-mean.csv")  # 替换为实际路径
+df2 = pd.read_csv(r"<PROJECT_ROOT>\wash-out-mean-1.csv")
 
 # 设置图形风格（可选）
 sns.set(style="whitegrid")

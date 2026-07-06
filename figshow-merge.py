@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import numpy as np
 import cv2
 import pandas as pd
@@ -18,13 +24,13 @@ def mkdir(path):
 
 # B,G,R 格式排序
 # 标签地址
-label_csv = r'E:\liuzhou_breastcancer\datas_clear.csv'
+label_csv = r'<PROJECT_ROOT>\datas_clear.csv'
 
 # 结果保存地址
-pic_save = r'E:\liuzhou_breastcancer\res_pic\result_fig'
-in_save = r'E:\liuzhou_breastcancer\res_pic\wash_in'
-out_save = r'E:\liuzhou_breastcancer\res_pic\wash_out'
-com_save = r'E:\liuzhou_breastcancer\res_pic\combined_pic'
+pic_save = r'<PROJECT_ROOT>\res_pic\result_fig'
+in_save = r'<PROJECT_ROOT>\res_pic\wash_in'
+out_save = r'<PROJECT_ROOT>\res_pic\wash_out'
+com_save = r'<PROJECT_ROOT>\res_pic\combined_pic'
 
 # 选择label 其实同时会对应到label对应的病人 所以要做一下数据预处理 按照label_csv这个文件整理
 select_label = 'Untitled.nii.gz'

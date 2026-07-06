@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 from sklearn.datasets import load_breast_cancer
 from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.model_selection import train_test_split
@@ -13,7 +19,7 @@ from scipy.stats import levene, ttest_ind
 # 检查CUDA是否可用（可选提示）
 print("CUDA available:", torch.cuda.is_available())
 
-data_path = r"E:\liuzhou_breastcancer\radiology\washin_radiology_2024-10-30.csv"
+data_path = r"<PROJECT_ROOT>\radiology\washin_radiology_2024-10-30.csv"
 
 data = pd.read_csv(data_path)
 # Load data

@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 ﻿import os
 import numpy as np
 import nibabel as nib
@@ -9,13 +15,13 @@ matplotlib.use("Agg")
 # 参数区（按需修改）
 # =========================
 # 输入原始 DCE-MRI NIfTI 文件
-INPUT_NII = r"E:\liuzhou_breastcancer\Benign_nii\31\3\3.nii"
+INPUT_NII = r"<PROJECT_ROOT>\Benign_nii\31\3\3.nii"
 
 # 输入肿瘤 mask 文件（肿瘤区域=1，其他区域=0）
-MASK_NII = r"E:\DCESummary_2019-202004\benign-DCE-221subs\part1-175subs+part2\31\2-Untitled.nii.gz"
+MASK_NII = r"<DCM_ROOT>\benign-DCE-221subs\part1-175subs+part2\31\2-Untitled.nii.gz"
 
 # 输出目录
-OUTPUT_DIR = r"E:\liuzhou_breastcancer\habitat_0403\dce_gray"
+OUTPUT_DIR = r"<PROJECT_ROOT>\habitat_0403\dce_gray"
 
 # 按 figshow-1.py 的写法使用窗位/窗宽
 # min_v = WL - WW/2, max_v = WL + WW/2

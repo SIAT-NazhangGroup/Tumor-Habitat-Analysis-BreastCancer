@@ -1,8 +1,14 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 
 # 读取两个CSV文件
-file1 = pd.read_excel(r"E:\liuzhou_breastcancer\radiology\良恶性名单.xlsx")
-file2 = pd.read_csv(r"E:\liuzhou_breastcancer\datas_rename.csv")
+file1 = pd.read_excel(r"<PROJECT_ROOT>\radiology\良恶性名单.xlsx")
+file2 = pd.read_csv(r"<PROJECT_ROOT>\datas_rename.csv")
 
 print("file1 中的前几行：")
 print(file1[['patient_name', 'label_name']].head())
@@ -19,6 +25,6 @@ merged_df = pd.merge(file1, file2[['index', 'Patient_ID']],
 print(merged_df)
 
 # 保存为一个新的CSV文件
-merged_df.to_csv(r'E:\liuzhou_breastcancer\selected_rename.csv', index=False)
+merged_df.to_csv(r'<PROJECT_ROOT>\selected_rename.csv', index=False)
 
 print("合并完成，新的CSV文件已保存")

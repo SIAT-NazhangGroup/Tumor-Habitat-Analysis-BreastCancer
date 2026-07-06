@@ -1,10 +1,16 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import os
 import shutil
 
 # 源文件夹路径
-source_dir = r'E:\DCESummary_2019-202004\benign-DCE-221subs\part1-175subs'
+source_dir = r'<DCM_ROOT>\benign-DCE-221subs\part1-175subs'
 # 目标文件夹路径
-target_dir = r'E:\liuzhou_breastcancer\benign'
+target_dir = r'<PROJECT_ROOT>\benign'
 
 # 遍历源文件夹中的每个文件夹
 for folder_name in os.listdir(source_dir):

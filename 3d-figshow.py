@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
@@ -6,7 +12,7 @@ from skimage.measure import marching_cubes
 import matplotlib.colors as mcolors
 
 # --- 加载数据 & 预处理 ---
-img = nib.load(r"E:\liuzhou_breastcancer\habitat_out\Malignant114_Untitled.nii")
+img = nib.load(r"<PROJECT_ROOT>\habitat_out\Malignant114_Untitled.nii")
 seg_data = img.get_fdata().astype(int)
 zooms = img.header.get_zooms()  # 获取真实体素间隔
 

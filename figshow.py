@@ -17,12 +17,12 @@ def mkdir(path):
 
 # B,G,R 格式排序
 # 标签地址
-label_csv = r'E:\breastcancer_new\datas_clear.csv'
+label_csv = r'<NEW_ROOT>\datas_clear.csv'
 
 # 结果保存地址
-pic_save = r'E:\breastcancer_new\res_pic\result_fig'
-in_save = r'E:\breastcancer_new\res_pic\wash_in'
-out_save = (r'E:\breastcancer_new\res_pic\wash_out')
+pic_save = r'<NEW_ROOT>\res_pic\result_fig'
+in_save = r'<NEW_ROOT>\res_pic\wash_in'
+out_save = (r'<NEW_ROOT>\res_pic\wash_out')
 
 # 选择label 其实同时会对应到label对应的病人 所以要做一下数据预处理 按照label_csv这个文件整理
 select_label = 'Untitled.nii.gz'
@@ -49,9 +49,9 @@ for datalist0 in range(datalist.shape[0]):
     max = 0
     new_string = f'{prefix}{datalist[datalist0, 1]}.nii'
     if datalist[datalist0, 3] == 0:
-        file_path = os.path.join(r'E:\breastcancer_new\figure-res-0', type, new_string)
+        file_path = os.path.join(r'<NEW_ROOT>\figure-res-0', type, new_string)
     else:
-        file_path = os.path.join(r'E:\breastcancer_new\figure-res-1', type, new_string)
+        file_path = os.path.join(r'<NEW_ROOT>\figure-res-1', type, new_string)
 
     # 提取mask的名称，有.nii和.nii.gz两种后缀，分开处理
     mask_name = datalist[datalist0, 2]

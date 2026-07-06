@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import gc
 import os
 import warnings
@@ -173,11 +179,11 @@ def process_case(fig_path, img_name, mask_name, image_in_path, image_out_path, m
     return True
 
 
-image_in_path = r"E:\liuzhou_breastcancer\figure-res-0\washIn\Benign1.nii"
-image_out_path = r"E:\liuzhou_breastcancer\figure-res-0\washOut\Benign1.nii"
-mask_path = r"E:\DCESummary_2019-202004\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz"
-datapath = r"E:\liuzhou_breastcancer\datas_clear_final.csv"
-fig_path = r"E:\liuzhou_breastcancer\class_rank1"
+image_in_path = r"<PROJECT_ROOT>\figure-res-0\washIn\Benign1.nii"
+image_out_path = r"<PROJECT_ROOT>\figure-res-0\washOut\Benign1.nii"
+mask_path = r"<DCM_ROOT>\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz"
+datapath = r"<PROJECT_ROOT>\datas_clear_final.csv"
+fig_path = r"<PROJECT_ROOT>\class_rank1"
 
 datalist = pd.read_csv(datapath)
 error_records = []
@@ -188,10 +194,10 @@ if error_records:
 
 for datalist0 in range(datalist.shape[0]):
     if datalist.loc[datalist0, "grade"] == 0:
-        folder_path = r"E:\liuzhou_breastcancer\figure-res-0"
+        folder_path = r"<PROJECT_ROOT>\figure-res-0"
         grade = "Benign"
     else:
-        folder_path = r"E:\liuzhou_breastcancer\figure-res-1"
+        folder_path = r"<PROJECT_ROOT>\figure-res-1"
         grade = "Malignant"
 
     img_name = grade + str(datalist.loc[datalist0, "patient_name"])

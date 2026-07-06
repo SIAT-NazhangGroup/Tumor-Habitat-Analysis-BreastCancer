@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -13,8 +19,8 @@ sns.set(style="whitegrid")
 sns.set(style="whitegrid")
 
 # 读取两个 CSV 文件
-df1 = pd.read_csv(r"E:\breastcancer_new\wash-out-mean.csv")  # 替换为实际路径
-df2 = pd.read_csv(r"E:\liuzhou_breastcancer\wash-out-mean.csv")
+df1 = pd.read_csv(r"<NEW_ROOT>\wash-out-mean.csv")  # 替换为实际路径
+df2 = pd.read_csv(r"<PROJECT_ROOT>\wash-out-mean.csv")
 
 # 设置分析的列名（需要两张表中都有该列）
 column_name = 'value'  # ← 请替换为你的实际列名

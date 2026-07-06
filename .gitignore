@@ -1,0 +1,55 @@
+# ===== 患者数据 / 医学影像（一律不入库，托管在 HF 私仓） =====
+*.nii
+*.nii.gz
+*.dcm
+*.dicom
+*.mhd
+*.raw
+*.zip
+*.tar
+*.tar.gz
+
+# ===== 表格 / 文档数据（含患者信息，托管在 HF 私仓） =====
+*.csv
+*.xlsx
+*.xls
+*.docx
+*.doc
+
+# ===== 模型权重（托管在 Hugging Face） =====
+*.pth
+*.ckpt
+*.pt
+*.onnx
+*.bin
+*.safetensors
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# ===== Jupyter =====
+*.ipynb_checkpoints
+
+# ===== 临时 / 系统文件 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+tmp/
+temp/
+_hf_data/
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.code-workspace

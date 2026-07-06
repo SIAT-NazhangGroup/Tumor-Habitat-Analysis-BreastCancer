@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 # from ClassifyFun import *
 import cupy as cp
 import os
@@ -59,14 +65,14 @@ def denoise_mask(input_data):
 
 Label_choice='Benign'
 # Label_choice='Malignant'
-Patient_path = r'E:\liuzhou_breastcancer\Benign_nii'
-# Patient_path = r'E:\liuzhou_breastcancer\Malignant_nii'
+Patient_path = r'<PROJECT_ROOT>\Benign_nii'
+# Patient_path = r'<PROJECT_ROOT>\Malignant_nii'
 #SET_Path = r'H:\Breast Cancer Project\yby\TypeClassify\result_data\Set'
 # Patient_path=r'H:\Breast Cancer Project\yby'+'\\'+Label_choice+'_data'
-SET_Path = r'E:\liuzhou_breastcancer\set\Set'
-Save_Path = r'E:\liuzhou_breastcancer\figure-res-0'
-# Save_Path = r'E:\liuzhou_breastcancer\figure-res-1'
-label_pathFile=r'E:\liuzhou_breastcancer\datas_path.csv'
+SET_Path = r'<PROJECT_ROOT>\set\Set'
+Save_Path = r'<PROJECT_ROOT>\figure-res-0'
+# Save_Path = r'<PROJECT_ROOT>\figure-res-1'
+label_pathFile=r'<PROJECT_ROOT>\datas_path.csv'
 pd_labelFile=pd.read_csv(label_pathFile)
 
 error_patients = []  # 记录数据形状不一致的患者

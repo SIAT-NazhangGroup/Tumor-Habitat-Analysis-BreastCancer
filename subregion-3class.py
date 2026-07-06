@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 #加载必要包
 import os
 import matplotlib
@@ -353,12 +359,12 @@ def slic_supervoxel(img_name, mask_name, image_path1, image_path2, mask_path, sm
 # segmented_image = slic_supervoxel(image_path, mask=mask, n_clusters=n_clusters, smooth_sigma=smooth_sigma, output_path=output_path)
 
 
-# image_path = r"E:\liuzhou_breastcancer\figure-res-0\washIn\Benign1.nii" #替换为你的图像路径
-# mask_path= r'E:\DCESummary_2019-202004\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz' #替换为你的掩码路径
-datapath = r"E:\liuzhou_breastcancer\datas_clear.csv"
-output_dir = r"E:\liuzhou_breastcancer\habitat_test"
-fig_path = r"E:\liuzhou_breastcancer\class_rank_in"
-modpath = r"E:\liuzhou_breastcancer\modified_datas.csv"
+# image_path = r"<PROJECT_ROOT>\figure-res-0\washIn\Benign1.nii" #替换为你的图像路径
+# mask_path= r'<DCM_ROOT>\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz' #替换为你的掩码路径
+datapath = r"<PROJECT_ROOT>\datas_clear.csv"
+output_dir = r"<PROJECT_ROOT>\habitat_test"
+fig_path = r"<PROJECT_ROOT>\class_rank_in"
+modpath = r"<PROJECT_ROOT>\modified_datas.csv"
 
 all_intensities = []
 datalist = pd.read_csv(datapath)
@@ -371,7 +377,7 @@ error_records = []
 silhouette = []
 
 # for datalist0 in range(datalist.shape[0]):
-#     folder_path = r'E:\liuzhou_breastcancer\figure-res-0' if datalist.loc[datalist0, 'grade'] == 0 else r'E:\liuzhou_breastcancer\figure-res-1'
+#     folder_path = r'<PROJECT_ROOT>\figure-res-0' if datalist.loc[datalist0, 'grade'] == 0 else r'<PROJECT_ROOT>\figure-res-1'
 #     grade = 'Benign' if datalist.loc[datalist0, 'grade'] == 0 else 'Malignant'
 
 #     img_name = grade + str(datalist.loc[datalist0, 'patient_name']) + '.nii'
@@ -413,16 +419,16 @@ if error_records:
     print("保存错误文件到 shape_mismatch_errors.csv")
 
 
-os.makedirs(r"E:\liuzhou_breastcancer\habitat_vis", exist_ok=True)
+os.makedirs(r"<PROJECT_ROOT>\habitat_vis", exist_ok=True)
 
 for datalist0 in range(datalist.shape[0]):
         # 读取数据
 
     if datalist.loc[datalist0, 'grade'] == 0 :
-        folder_path = r'E:\liuzhou_breastcancer\figure-res-0'
+        folder_path = r'<PROJECT_ROOT>\figure-res-0'
         grade = 'Benign'
     else : 
-        folder_path = r'E:\liuzhou_breastcancer\figure-res-1'
+        folder_path = r'<PROJECT_ROOT>\figure-res-1'
         grade = 'Malignant'
 
     img_name = grade + str(datalist.loc[datalist0, 'patient_name'])
@@ -491,7 +497,7 @@ for datalist0 in range(datalist.shape[0]):
     # cv2.drawContours(rgb, contours, -1, (255, 255, 255), 1)
 
     # 保存PNG图像
-    vis_output_path = os.path.join(r"E:\liuzhou_breastcancer\habitat_vis", f"{img_name}_{mask_name}.png")
+    vis_output_path = os.path.join(r"<PROJECT_ROOT>\habitat_vis", f"{img_name}_{mask_name}.png")
     plt.imsave(vis_output_path, rgb)
     print(f"PNG 可视化图已保存至：{vis_output_path}")
 

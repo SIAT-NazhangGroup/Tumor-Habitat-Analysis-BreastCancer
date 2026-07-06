@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import numpy as np
 import cv2
 import pandas as pd
@@ -9,8 +15,8 @@ import os
 import gc
 
 # # 读取两个 CSV 文件
-# csv1 = pd.read_csv(r"E:\breastcancer_new\radiology\patient.csv")
-# csv2 = pd.read_csv(r"E:\breastcancer_new\datas_path.csv")
+# csv1 = pd.read_csv(r"<NEW_ROOT>\radiology\patient.csv")
+# csv2 = pd.read_csv(r"<NEW_ROOT>\datas_path.csv")
 
 # # 按照三列进行合并（inner：只保留能匹配的行）
 # merged = pd.merge(csv1, csv2[['patient_name', 'label_name', 'grade', 'nii_data', 'dcm_data', 'label_path']],
@@ -18,7 +24,7 @@ import gc
 
 # merged = merged[~merged['label_name'].isin(['ground_truth.nii', 'ground_truth.nii.gz'])]
 # # 保存结果到新的 CSV 文件
-# merged.to_csv(r'E:\breastcancer_new\datas_clear.csv', index=False)
+# merged.to_csv(r'<NEW_ROOT>\datas_clear.csv', index=False)
 
 
 
@@ -29,7 +35,7 @@ def mkdir(path):
 
 # B,G,R 格式排序
 # 标签地址
-label_csv = r'E:\liuzhou_breastcancer\datas_clear.csv'
+label_csv = r'<PROJECT_ROOT>\datas_clear.csv'
 
 
 #%%
@@ -60,9 +66,9 @@ for datalist0 in range(datalist.shape[0]):
     patient = datalist[datalist0, 1]
     new_string = f'{prefix}{datalist[datalist0, 1]}.nii'
     if datalist[datalist0, 3] == 0:
-        file_path = os.path.join(r'E:\liuzhou_breastcancer\figure-res-0', type, new_string)
+        file_path = os.path.join(r'<PROJECT_ROOT>\figure-res-0', type, new_string)
     else:
-        file_path = os.path.join(r'E:\liuzhou_breastcancer\figure-res-1', type, new_string)
+        file_path = os.path.join(r'<PROJECT_ROOT>\figure-res-1', type, new_string)
 
     # 提取mask的名称，有.nii和.nii.gz两种后缀，分开处理
     mask_name = datalist[datalist0, 2]
@@ -95,7 +101,7 @@ for datalist0 in range(datalist.shape[0]):
 df = pd.DataFrame(result, columns = ['patient_name', 'label_name', 'grade', 'value'])
 print(df)
 
-df.to_csv(r'E:\liuzhou_breastcancer\wash-in-mean-1.csv')
+df.to_csv(r'<PROJECT_ROOT>\wash-in-mean-1.csv')
 
 
 

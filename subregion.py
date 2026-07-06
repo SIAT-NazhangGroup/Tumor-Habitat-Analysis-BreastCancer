@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 #加载必要包
 import os
 import gc
@@ -323,11 +329,11 @@ def slic_supervoxel(image_path1, image_path2, mask_path, smooth_sigma=1.0):
 # segmented_image = slic_supervoxel(image_path, mask=mask, n_clusters=n_clusters, smooth_sigma=smooth_sigma, output_path=output_path)
 
 
-image_path = r"E:\liuzhou_breastcancer\figure-res-0\washIn\Benign1.nii" #替换为你的图像路径
-mask_path= r'E:\DCESummary_2019-202004\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz' #替换为你的掩码路径
-datapath = r"E:\liuzhou_breastcancer\datas_path" \
+image_path = r"<PROJECT_ROOT>\figure-res-0\washIn\Benign1.nii" #替换为你的图像路径
+mask_path= r'<DCM_ROOT>\benign-DCE-221subs\part1-175subs+part2\1\Untitled.nii.gz' #替换为你的掩码路径
+datapath = r"<PROJECT_ROOT>\datas_path" \
 ".csv"
-output_dir = r"E:\liuzhou_breastcancer\habitat_in"
+output_dir = r"<PROJECT_ROOT>\habitat_in"
 
 all_intensities = []
 datalist = pd.read_csv(datapath)
@@ -335,7 +341,7 @@ datalist = pd.read_csv(datapath)
 error_records = []
 
 # for datalist0 in range(datalist.shape[0]):
-#     folder_path = r'E:\liuzhou_breastcancer\figure-res-0' if datalist.loc[datalist0, 'grade'] == 0 else r'E:\liuzhou_breastcancer\figure-res-1'
+#     folder_path = r'<PROJECT_ROOT>\figure-res-0' if datalist.loc[datalist0, 'grade'] == 0 else r'<PROJECT_ROOT>\figure-res-1'
 #     grade = 'Benign' if datalist.loc[datalist0, 'grade'] == 0 else 'Malignant'
 
 #     img_name = grade + str(datalist.loc[datalist0, 'patient_name']) + '.nii'
@@ -380,10 +386,10 @@ for datalist0 in range(datalist.shape[0]):
         # 读取数据
 
     if datalist.loc[datalist0, 'grade'] == 0 :
-        folder_path = r'E:\liuzhou_breastcancer\figure-res-0'
+        folder_path = r'<PROJECT_ROOT>\figure-res-0'
         grade = 'Benign'
     else : 
-        folder_path = r'E:\liuzhou_breastcancer\figure-res-1'
+        folder_path = r'<PROJECT_ROOT>\figure-res-1'
         grade = 'Malignant'
 
     img_name = grade + str(datalist.loc[datalist0, 'patient_name'])

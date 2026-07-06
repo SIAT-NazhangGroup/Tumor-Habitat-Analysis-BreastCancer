@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -6,7 +12,7 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.family'] = 'Times New Roman'
 
 # 读取CSV
-df = pd.read_csv(r"E:\liuzhou_breastcancer\feature_mean_LASSOcoef.csv")
+df = pd.read_csv(r"<PROJECT_ROOT>\feature_mean_LASSOcoef.csv")
 
 
 # Feature index（1~76）
@@ -49,7 +55,7 @@ plt.tight_layout()
 
 # 保存
 plt.savefig(
-    r"E:\test_fig\lasso_coefficients_plot.png",
+    r"<FIG_ROOT>\lasso_coefficients_plot.png",
     dpi=300,
     bbox_inches="tight"
 )

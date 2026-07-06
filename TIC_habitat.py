@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 ﻿import os
 import re
 import traceback
@@ -10,18 +16,18 @@ import pandas as pd
 # 1. 全局路径配置
 # =========================
 # 样本清单
-meta_csv = r"E:\liuzhou_breastcancer\datas_clear_final.csv"
+meta_csv = r"<PROJECT_ROOT>\datas_clear_final.csv"
 
 # 原始分区图目录（每个样本一个分区图）
 # 分区图命名规则：{Benign|Malignant}{patient_name}_{label_name去后缀}.nii
-habitat_root = r"E:\liuzhou_breastcancer\habitat_test"
+habitat_root = r"<PROJECT_ROOT>\habitat_test"
 
 # wash-in / wash-out 参数图根目录
-wash_root_benign = r"E:\liuzhou_breastcancer\figure-res-0"
-wash_root_malignant = r"E:\liuzhou_breastcancer\figure-res-1"
+wash_root_benign = r"<PROJECT_ROOT>\figure-res-0"
+wash_root_malignant = r"<PROJECT_ROOT>\figure-res-1"
 
 # 总输出目录（按你的要求固定为 habitat_0403）
-out_root = r"E:\liuzhou_breastcancer\habitat_0403"
+out_root = r"<PROJECT_ROOT>\habitat_0403"
 out_csv_dir = os.path.join(out_root, "csv")
 out_curve_dir = os.path.join(out_root, "curve")
 out_nifti_dir = os.path.join(out_root, "nifti")

@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import numpy as np
 import pandas as pd
 import os
@@ -30,7 +36,7 @@ N_SEEDS = len(seed_list) # 随机种子数量，根据列表长度自动确定
 
 TEST_SIZE = 0.3             # 测试集比例
 CV_FOLDS = 5                # 交叉验证折数
-RESULT_DIR = r"E:\liuzhou_breastcancer\eval_results-2" # 结果保存目录
+RESULT_DIR = r"<PROJECT_ROOT>\eval_results-2" # 结果保存目录
 
 # 确保结果保存目录存在
 os.makedirs(RESULT_DIR, exist_ok=True)
@@ -47,13 +53,13 @@ TARGET_COLUMN = 'grade'
 
 # --- 1. 加载原始数据 ---
 print("--- 正在加载和初步处理数据 ---")
-in_datapath = r"E:\liuzhou_breastcancer\radiology\washin_radiology_2025-07-10.csv"
+in_datapath = r"<PROJECT_ROOT>\radiology\washin_radiology_2025-07-10.csv"
 in_data = pd.read_csv(in_datapath)
-filter_df = pd.read_csv(r'E:\liuzhou_breastcancer\datas_clear_final.csv')
+filter_df = pd.read_csv(r'<PROJECT_ROOT>\datas_clear_final.csv')
 
-val_datapath = r"E:\breastcancer_new\radiology\washin_radiology_2025-07-11.csv"
+val_datapath = r"<NEW_ROOT>\radiology\washin_radiology_2025-07-11.csv"
 val_data = pd.read_csv(val_datapath)
-filter_val_df = pd.read_csv(r'E:\breastcancer_new\datas_clear_pro.csv')
+filter_val_df = pd.read_csv(r'<NEW_ROOT>\datas_clear_pro.csv')
 
 # 统一进行关键列的类型转换，确保合并和后续处理的正确性
 for df_obj in [in_data, filter_df, val_data, filter_val_df]:

@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 ﻿import os
 import numpy as np
 import nibabel as nib
@@ -8,10 +14,10 @@ import pandas as pd
 # 单病例参数区（只改这里）
 # =========================
 # 原始分区图（标签建议为 1/2/3）
-HABITAT_FILE = r"E:\liuzhou_breastcancer\habitat_0403\nifti\Benign31_2-Untitled_new_region_by_score.nii"
+HABITAT_FILE = r"<PROJECT_ROOT>\habitat_0403\nifti\Benign31_2-Untitled_new_region_by_score.nii"
 
 # 9期 DCE 目录（结构：...\1\1.nii ... \9\9.nii）
-DCE_CASE_DIR = r"E:\liuzhou_breastcancer\Benign_nii\31"
+DCE_CASE_DIR = r"<PROJECT_ROOT>\Benign_nii\31"
 
 # 是否按“新分区”画曲线：
 # True  -> 先用 washin/washout 计算 score 并重排分区，再统计曲线
@@ -19,11 +25,11 @@ DCE_CASE_DIR = r"E:\liuzhou_breastcancer\Benign_nii\31"
 USE_NEW_REGION = False
 
 # 仅当 USE_NEW_REGION=True 时需要设置
-WASHIN_FILE = r"E:\liuzhou_breastcancer\figure-res-1\washIn\Malignant53.nii"
-WASHOUT_FILE = r"E:\liuzhou_breastcancer\figure-res-1\washOut\Malignant53.nii"
+WASHIN_FILE = r"<PROJECT_ROOT>\figure-res-1\washIn\Malignant53.nii"
+WASHOUT_FILE = r"<PROJECT_ROOT>\figure-res-1\washOut\Malignant53.nii"
 
 # 输出目录
-OUTPUT_DIR = r"E:\liuzhou_breastcancer\habitat_0403\curve"
+OUTPUT_DIR = r"<PROJECT_ROOT>\habitat_0403\curve"
 OUTPUT_CSV = os.path.join(OUTPUT_DIR, "Benign31_single_tic.csv")
 OUTPUT_PNG = os.path.join(OUTPUT_DIR, "Benign31_single_tic.png")
 

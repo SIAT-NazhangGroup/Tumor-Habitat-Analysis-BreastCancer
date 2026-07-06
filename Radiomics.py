@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 from __future__ import print_function
 import nibabel as nib
 import collections
@@ -10,13 +16,13 @@ import gc
 import radiomics
 from radiomics import featureextractor  # This module is used for interaction with pyradiomics
 import pandas as pd
-paramPath=os.path.join(r'E:\liuzhou\Setting', 'Params.yaml')
+paramPath=os.path.join(r'<PROJECT_ROOT>\Setting', 'Params.yaml')
 extractor = featureextractor.RadiomicsFeatureExtractor(paramPath)
 
-labels_file=r'E:\breastcancer_new\datas_clear.csv'
-datas0_folder=r'E:\breastcancer_new\figure-res-0\washIn'
-datas1_folder=r'E:\breastcancer_new\figure-res-1\washIn'
-# datas_folder=r'E:\liuzhou_breastcancer\habitat_out'
+labels_file=r'<NEW_ROOT>\datas_clear.csv'
+datas0_folder=r'<NEW_ROOT>\figure-res-0\washIn'
+datas1_folder=r'<NEW_ROOT>\figure-res-1\washIn'
+# datas_folder=r'<PROJECT_ROOT>\habitat_out'
 
 #label
 datalist=pd.read_csv(labels_file)
@@ -116,10 +122,10 @@ for i in range(pd_all.shape[0]):
     # nib.save(mask,tempMask)
 
     # tempImage='../data/temp/'+'image.nii'
-    tempMask=r'E:\breastcancer_new\temp'+'mask.nii'
+    tempMask=r'<NEW_ROOT>\temp'+'mask.nii'
     nib.save(mask,tempMask)
 
-    tempImage=r'E:\breastcancer_new\temp'+'image.nii'
+    tempImage=r'<NEW_ROOT>\temp'+'image.nii'
     image_trans=np.array(image.get_fdata())
     # image_trans[image_trans==19]=0
     nib.save(nib.Nifti1Image(image_trans,image.affine),tempImage)
@@ -149,6 +155,6 @@ for i in range(pd_all.shape[0]):
 pd_result = pd.DataFrame(list_result)
 
 today = datetime.date.today()
-pd_result.to_csv(r'E:\breastcancer_new\radiology\in_radiology_habitat2_{}.csv'.format(today),index=False)
+pd_result.to_csv(r'<NEW_ROOT>\radiology\in_radiology_habitat2_{}.csv'.format(today),index=False)
 
 gc.collect()

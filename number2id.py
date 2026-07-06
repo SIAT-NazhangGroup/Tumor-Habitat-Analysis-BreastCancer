@@ -1,10 +1,16 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import os
 import pydicom
 import pandas as pd
 import cupy as cp
 
 # 设置根路径
-datas_path = r'E:\liuzhou_breastcancer\datas_path.csv'
+datas_path = r'<PROJECT_ROOT>\datas_path.csv'
 paths = pd.read_csv(datas_path)
 mempool = cp.get_default_memory_pool()
 
@@ -80,7 +86,7 @@ for i in range(paths.shape[0]):
 paths["Patient_ID"] = ids
 
 # 保存新的 CSV 文件
-paths.to_csv(r'E:\liuzhou_breastcancer\datas_rename.csv', index=False)
+paths.to_csv(r'<PROJECT_ROOT>\datas_rename.csv', index=False)
 
 
 

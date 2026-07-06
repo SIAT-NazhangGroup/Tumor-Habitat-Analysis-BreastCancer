@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import numpy as np
 from itertools import combinations
@@ -5,13 +11,13 @@ from scipy.stats import ttest_rel, wilcoxon
 
 # ========= 手动指定7个CSV文件路径 =========
 csv_paths = {
-    "in": r"E:\liuzhou_breastcancer\eval_results-2\in_top100_seeds_all_combined.csv",
-    "out": r"E:\liuzhou_breastcancer\eval_results-2\out_top100_seeds_all_combined.csv",
-    "in_out": r"E:\liuzhou_breastcancer\eval_results-2\in+out_5000_seeds_all_combined.csv",
-    "habitat_in": r"E:\liuzhou_breastcancer\eval_results-2\in_habitat_top100_seeds_all_combined.csv",
-    "habitat_out": r"E:\liuzhou_breastcancer\eval_results-2\out_habitat_top100_seeds_all_combined.csv",
-    "habitat_in_out": r"E:\liuzhou_breastcancer\eval_results-2\onlysub_top100_seeds_all_combined.csv",
-    "combine": r"E:\liuzhou_breastcancer\eval_results-2\combined.csv"
+    "in": r"<PROJECT_ROOT>\eval_results-2\in_top100_seeds_all_combined.csv",
+    "out": r"<PROJECT_ROOT>\eval_results-2\out_top100_seeds_all_combined.csv",
+    "in_out": r"<PROJECT_ROOT>\eval_results-2\in+out_5000_seeds_all_combined.csv",
+    "habitat_in": r"<PROJECT_ROOT>\eval_results-2\in_habitat_top100_seeds_all_combined.csv",
+    "habitat_out": r"<PROJECT_ROOT>\eval_results-2\out_habitat_top100_seeds_all_combined.csv",
+    "habitat_in_out": r"<PROJECT_ROOT>\eval_results-2\onlysub_top100_seeds_all_combined.csv",
+    "combine": r"<PROJECT_ROOT>\eval_results-2\combined.csv"
 }
 
 # ========= 定义三类列名 =========

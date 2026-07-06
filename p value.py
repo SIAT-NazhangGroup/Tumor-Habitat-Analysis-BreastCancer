@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -129,13 +135,13 @@ def friedman_posthoc(df, cols, subject_col, padjust="holm", plot=True):
 
 # 文件路径
 files = {
-    'in': r"E:\liuzhou_breastcancer\eval_results-2\in_top100_seeds_all_combined.csv",
-    'out': r"E:\liuzhou_breastcancer\eval_results-2\out_top100_seeds_all_combined.csv",
-    'in+out': r"E:\liuzhou_breastcancer\eval_results-2\in+out_5000_seeds_all_combined.csv",
-    'habitat in': r"E:\liuzhou_breastcancer\eval_results-2\in_habitat_top100_seeds_all_combined.csv",
-    'habitat out': r"E:\liuzhou_breastcancer\eval_results-2\out_habitat_top100_seeds_all_combined.csv",
-    'habitat in+out': r"E:\liuzhou_breastcancer\eval_results-2\onlysub_top100_seeds_all_combined.csv",
-    'combine': r"E:\liuzhou_breastcancer\eval_results-2\combined-copy-2.csv"
+    'in': r"<PROJECT_ROOT>\eval_results-2\in_top100_seeds_all_combined.csv",
+    'out': r"<PROJECT_ROOT>\eval_results-2\out_top100_seeds_all_combined.csv",
+    'in+out': r"<PROJECT_ROOT>\eval_results-2\in+out_5000_seeds_all_combined.csv",
+    'habitat in': r"<PROJECT_ROOT>\eval_results-2\in_habitat_top100_seeds_all_combined.csv",
+    'habitat out': r"<PROJECT_ROOT>\eval_results-2\out_habitat_top100_seeds_all_combined.csv",
+    'habitat in+out': r"<PROJECT_ROOT>\eval_results-2\onlysub_top100_seeds_all_combined.csv",
+    'combine': r"<PROJECT_ROOT>\eval_results-2\combined-copy-2.csv"
 }
 
 # 读取并合并

@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import os
 import numpy as np
 import nibabel as nib
@@ -200,9 +206,9 @@ def visualize_largest_valid_slice(nii_path, washin_path, washout_path, out_png=N
 
 
 if __name__ == "__main__":
-    nii_path = r"E:\liuzhou_breastcancer\habitat_0403\nifti\MalignantP005_NOR_8_new_region_by_score.nii"
-    in_png_path = r"E:\liuzhou_breastcancer\res_pic\result_fig\MalignantP005_NOR\8_in.png"
-    out_png_path = r"E:\liuzhou_breastcancer\res_pic\result_fig\MalignantP005_NOR\8_out.png"
-    output_dir = r"E:\liuzhou_breastcancer\res_pic\result_fig\MalignantP005_NOR"
+    nii_path = r"<PROJECT_ROOT>\habitat_0403\nifti\MalignantP005_NOR_8_new_region_by_score.nii"
+    in_png_path = r"<PROJECT_ROOT>\res_pic\result_fig\MalignantP005_NOR\8_in.png"
+    out_png_path = r"<PROJECT_ROOT>\res_pic\result_fig\MalignantP005_NOR\8_out.png"
+    output_dir = r"<PROJECT_ROOT>\res_pic\result_fig\MalignantP005_NOR"
 
     split_png_by_subregion(nii_path, in_png_path, out_png_path, output_dir)

@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import numpy as np
 import pandas as pd
 import os
@@ -45,7 +51,7 @@ N_SEEDS = len(seed_list) # 随机种子数量，根据列表长度自动确定
 
 TEST_SIZE = 0.3             # 测试集比例
 CV_FOLDS = 5                # 交叉验证折数
-RESULT_DIR = r"E:\liuzhou_breastcancer\eval_results-2" # 结果保存目录
+RESULT_DIR = r"<PROJECT_ROOT>\eval_results-2" # 结果保存目录
 
 # --- 模拟数据 (请替换为你的实际数据) ---
 # 假设你有 X_all (特征), y_all (目标变量)
@@ -57,10 +63,10 @@ def filter_df_by_conditions(df, filter_df):
     merged = df.merge(filter_df, on=['patient_name', 'label_name','grade'], how='inner')
     return merged
 
-in_datapath = r"E:\liuzhou_breastcancer\radiology\washin_radiology_2025-07-10.csv"
+in_datapath = r"<PROJECT_ROOT>\radiology\washin_radiology_2025-07-10.csv"
 in_data=pd.read_csv(in_datapath)
 
-filter_df = pd.read_csv(r'E:\liuzhou_breastcancer\datas_clear_final.csv')  # 包含 patient_name, label_name, grade
+filter_df = pd.read_csv(r'<PROJECT_ROOT>\datas_clear_final.csv')  # 包含 patient_name, label_name, grade
 
 for df in [in_data, filter_df]:
     df['patient_name'] = df['patient_name'].astype(str)
@@ -89,10 +95,10 @@ print(X_all)
 
 # 模拟外部验证数据
 
-val_datapath = r"E:\breastcancer_new\radiology\washin_radiology_2025-07-11.csv"
+val_datapath = r"<NEW_ROOT>\radiology\washin_radiology_2025-07-11.csv"
 val_data=pd.read_csv(val_datapath)
 
-filter_val_df = pd.read_csv(r'E:\breastcancer_new\datas_clear_pro.csv')  # 包含 patient_name, label_name, grade
+filter_val_df = pd.read_csv(r'<NEW_ROOT>\datas_clear_pro.csv')  # 包含 patient_name, label_name, grade
 
 for df in [val_data, filter_val_df]:
     df['patient_name'] = df['patient_name'].astype(str)

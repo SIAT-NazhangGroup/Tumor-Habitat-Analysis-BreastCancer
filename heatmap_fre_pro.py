@@ -1,3 +1,9 @@
+# 路径占位符说明（运行前请全局替换）：
+#   <PROJECT_ROOT>  -> 原数据/中间结果根目录（如 wash-in/out 图、habitat 输出）
+#   <NEW_ROOT>      -> 原二期数据根目录
+#   <DCM_ROOT>      -> 原 DICOM 原始数据根目录
+#   <FIG_ROOT>      -> 原图表输出根目录
+#   <REDACTED_PATH> -> 已脱敏的零散绝对路径，请按需替换
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -15,7 +21,7 @@ rcParams['axes.unicode_minus'] = False         # 负号正常显示
 # =========================
 # 1. 读取数据
 # =========================
-df = pd.read_csv(r'E:\liuzhou_breastcancer\feature_selection_simulated_matrix.csv')
+df = pd.read_csv(r'<PROJECT_ROOT>\feature_selection_simulated_matrix.csv')
 
 # 如果有 Repeat 列则删除
 if "Repeat" in df.columns:
